@@ -65,13 +65,12 @@ module.exports = {
         }
         if (!result) {
           res.status(401);
-          res.send({
-            error: "unauthorized"
-          });
+          res.render("signin.ejs", { message: "Wrong Input or Password" });
           return;
         }
         if (bcrypt.compareSync(password, result.password)) {
           console.log(result);
+          res.render("pers_info.ejs", { result });
         }
       }
     );
